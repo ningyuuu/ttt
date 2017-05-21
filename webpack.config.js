@@ -3,10 +3,14 @@ const path = require('path');
 
 const config = {
     context: path.resolve(__dirname, 'src'),
-    entry: './app.js',
+    entry: [  
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client',
+        './app.js',
+    ],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist/',
+        publicPath: 'http://localhost:3000/dist/',
         filename: 'bundle.js'
     },
     module: {
@@ -24,7 +28,10 @@ const config = {
                 }]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ]
 }
 
 module.exports = config;
