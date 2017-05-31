@@ -1,0 +1,36 @@
+    #main {
+        color: red;
+        font-weight: bold;
+    }
+
+    #tictactoe-board {
+
+    }
+
+    .square {
+        display : block;
+        width   : 125px;
+        height  : 125px;
+        border  : 1px solid #888;
+        background-color: #fff;
+        color       : #e4e4e4;
+        font-size   : 7em;
+        text-align  : center;
+    }
+
+    .row {
+        display         : flex;
+        flex-direction  : row;
+        justify-content : space-between;
+    }
+
+    .filler {
+        display: flex;
+        justify-content: space-between;
+        width: 400px;
+        height: 400px;
+        padding: 5px;
+        border: 1px solid #aaa;
+        flex-direction  : column;
+        background-color: #eee;
+    }

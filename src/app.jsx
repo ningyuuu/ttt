@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Main from './main'
+import Main from './main';
+import './assets/css/style.css';
 
 render(
   <AppContainer>

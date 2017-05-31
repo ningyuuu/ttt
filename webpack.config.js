@@ -6,15 +6,26 @@ const config = {
     entry: [  
         'react-hot-loader/patch',
         'webpack-hot-middleware/client',
-        './app.js',
+        './app.jsx',
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: 'http://localhost:3000/dist/',
         filename: 'bundle.js'
     },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
     module: {
         rules: [
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ]
+            },
             {
                 test: /\.jsx?$/,
                 include: path.resolve(__dirname, 'src'),
@@ -26,7 +37,7 @@ const config = {
                         ]
                     }
                 }]
-            }
+            },
         ]
     },
     plugins: [
