@@ -66,8 +66,8 @@ export default class Board extends React.Component {
         let key = 0;
 
         for (let row of this.state.board) {
-            rows.push(<Row row={row} 
-                           key={key} 
+            rows.push(<Row row={row}
+                           key={key}
                            click={this.setSymbol(key)}
                            />
                      );

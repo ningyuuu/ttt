@@ -3,6 +3,8 @@ import http from 'http';
 import path from 'path';
 import socketio from 'socket.io';
 
+import Game from './server/game'
+
 const app = express()
 const httpApp = http.createServer(app)
 const port = process.env.PORT || 3000
@@ -26,48 +28,22 @@ app.get('/', (req, res) => {
 });
 
 const io = socketio(httpApp);
+const game = new Game();
 
 io.on('connection', (socket) => {
     console.log('A connection!');
     let playerID;
 
     socket.on('requestPlayerID', () => {
-        playerID = setPlayer();
+        playerID = game.setPlayer();
         socket.emit('setPlayer', playerID);
     });
+
+    socket.on('disconnect', () => {
+        game.unsetPlayer(playerID);
+    })
 })
 
 httpApp.listen(port, () => {
     console.log('Hello world server!');
 });
-
-const createSetPlayerFunction = function() {
-    let one = false;
-    let two = false;
-
-    const setPlayer = function() {
-        if (!one) {
-            one = true;
-            return 1;
-        } else if (!two) {
-            two = true;
-            return 2;
-        } else {
-            return 0;
-        }
-    }
-
-    const unsetPlayer = function(x) {
-        if (x === 1) {
-            one = false;
-        }
-
-        if (x === 2) {
-            two = false;
-        }
-    }
-
-    return {setPlayer, unsetPlayer};
-}
-
-const {setPlayer, unsetPlayer} = createSetPlayerFunction();
